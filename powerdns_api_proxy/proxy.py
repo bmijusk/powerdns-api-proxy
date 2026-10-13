@@ -31,6 +31,7 @@ from powerdns_api_proxy.config import (
     load_config,
 )
 from powerdns_api_proxy.exceptions import (
+    InvalidPathParameterException,
     RecordNotAllowedException,
     RessourceNotAllowedException,
     SearchNotAllowedException,

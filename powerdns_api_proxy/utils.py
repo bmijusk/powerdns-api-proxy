@@ -20,6 +20,18 @@ def check_path_param_safe(value: str) -> bool:
     return SAFE_PATH_PARAM_PATTERN.fullmatch(value) is not None
 
 
+SENSITIVE_PATH_SEGMENTS = {"cryptokeys", "tsigkeys"}
+
+
+def is_sensitive_path(path: str) -> bool:
+    """Checks if path points at a cryptokey or tsigkey endpoint.
+
+    Matches on path segments rather than substrings, so a zone named
+    e.g. "tsigkeys.example.com" is not mistaken for the /tsigkeys endpoint.
+    """
+    return any(segment in SENSITIVE_PATH_SEGMENTS for segment in path.split("/"))
+
+
 def check_subzone(zone: str, main_zone: str) -> bool:
     """Checks if `zone` is a subzone of `main_zone` (or equal to it)."""
     zone = zone.rstrip(".")
