@@ -23,7 +23,7 @@ contents:
       mode: 0640
       owner: root
       group: powerdns-api-proxy
-  - src: ./packaging/config.yml
+  - src: ./packaging/config.example.yml
     dst: /etc/powerdns-api-proxy/config.yml
     type: config|noreplace
     file_info:
