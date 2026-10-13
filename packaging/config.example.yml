@@ -1,0 +1,11 @@
+# Edit this file, then run: systemctl restart powerdns-api-proxy
+# The token_sha512 below is a placeholder that matches no token.
+# Generate a real one with: printf '%s' 'your-token' | sha512sum
+pdns_api_url: https://powerdns-api.example.com
+pdns_api_token: change-me
+pdns_api_verify_ssl: true
+environments:
+  - name: example-env
+    token_sha512: "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    zones:
+      - name: zone1.example.com
