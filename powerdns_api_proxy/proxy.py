@@ -42,7 +42,10 @@ from powerdns_api_proxy.exceptions import (
 )
 from powerdns_api_proxy.logging import logger
 from powerdns_api_proxy.middleware import AuditMiddleware
-from powerdns_api_proxy.metrics import http_requests_total_environment
+from powerdns_api_proxy.metrics import (
+    METRICS_NAMESPACE,
+    http_requests_total_environment,
+)
 from powerdns_api_proxy.models import (
     ResponseAllowed,
     ResponseZoneAllowed,
@@ -94,8 +97,10 @@ if config.metrics_enabled:
         should_group_status_codes=False,
     )
     logger.info("Enabling metrics")
-    instrumentator.add(metrics.default())
-    instrumentator.add(http_requests_total_environment())
+    instrumentator.add(metrics.default(metric_namespace=METRICS_NAMESPACE))
+    instrumentator.add(
+        http_requests_total_environment(metric_namespace=METRICS_NAMESPACE)
+    )
     instrumentator.instrument(app)
 
     if config.metrics_require_auth:

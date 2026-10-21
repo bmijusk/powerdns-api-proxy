@@ -7,6 +7,8 @@ from powerdns_api_proxy.config import get_environment_for_token, load_config
 
 config = load_config()
 
+METRICS_NAMESPACE = "powerdns_api_proxy"
+
 
 def http_requests_total_environment(
     metric_namespace: str = "",
