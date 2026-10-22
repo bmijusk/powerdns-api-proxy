@@ -342,6 +342,9 @@ The [prometheus-fastapi-instrumentator](https://github.com/trallnag/prometheus-f
 
 Additionally http requests per environment are counted.
 
+All `http_*` metrics are prefixed with `powerdns_api_proxy_`, e.g. `powerdns_api_proxy_http_requests_total` and `powerdns_api_proxy_http_requests_environment_total`.
+The `python_*` and `process_*` metrics are the standard Prometheus client metrics and are not prefixed.
+
 ### API Docs
 
 The API documentation can be viewed at `<url>/docs`.
